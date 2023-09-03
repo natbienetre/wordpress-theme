@@ -4,7 +4,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/#search-result
  *
- * @package Nat\'Bien-Être
+ * @package Nat'Bien-Être
  */
 
 get_header();

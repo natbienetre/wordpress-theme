@@ -8,7 +8,7 @@
  *
  * @link https://developer.wordpress.org/themes/functionality/custom-headers/
  *
- * @package Nat\'Bien-Être
+ * @package Nat'Bien-Être
  */
 
 /**

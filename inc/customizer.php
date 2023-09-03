@@ -1,8 +1,8 @@
 <?php
 /**
- * Nat\'Bien-Être Theme Customizer
+ * Nat'Bien-Être Theme Customizer
  *
- * @package Nat\'Bien-Être
+ * @package Nat'Bien-Être
  */
 
 /**

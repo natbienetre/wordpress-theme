@@ -4,7 +4,7 @@
  *
  * Eventually, some of the functionality here could be replaced by core features.
  *
- * @package Nat\'Bien-Être
+ * @package Nat'Bien-Être
  */
 
 if ( ! function_exists( 'natbienetre_posted_on' ) ) :

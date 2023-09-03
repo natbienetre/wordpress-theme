@@ -9,7 +9,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package Nat\'Bien-Être
+ * @package Nat'Bien-Être
  */
 
 get_header();

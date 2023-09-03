@@ -1,10 +1,10 @@
 <?php
 /**
- * Nat\'Bien-Être functions and definitions
+ * Nat'Bien-Être functions and definitions
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
- * @package Nat\'Bien-Être
+ * @package Nat'Bien-Être
  */
 
 if ( ! defined( '_S_VERSION' ) ) {
@@ -23,7 +23,7 @@ function natbienetre_setup() {
 	/*
 		* Make theme available for translation.
 		* Translations can be filed in the /languages/ directory.
-		* If you're building a theme based on Nat\'Bien-Être, use a find and replace
+		* If you're building a theme based on Nat'Bien-Être, use a find and replace
 		* to change 'natbienetre' to the name of your theme in all the template files.
 		*/
 	load_theme_textdomain( 'natbienetre', get_template_directory() . '/languages' );
