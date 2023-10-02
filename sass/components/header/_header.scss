@@ -1,0 +1,57 @@
+.site-header {
+	display: grid;
+	grid-template-areas: "title margin menu";
+	padding: 0 3em;
+
+	a {
+		text-decoration: none;
+	}
+}
+
+@media (min-width: $size__menu-fullwidth) and (max-width: ($size__menu-toggle + 1)) and (min-height: ($height__menu-sticky)) {
+	.site {
+		.site-header {
+			position: sticky;
+			top: 0;
+			left: 0;
+			right: 0;
+		}
+
+		#primary-menu {
+			overflow-y: scroll;
+		}
+	}
+}
+
+@media (min-width: $size__menu-toggle) {
+	.menu-toggle {
+		display: none;
+	}
+
+	.main-navigation .menu {
+		display: flex;
+		
+		&>li {
+			margin-left: auto;
+		}
+	}
+}
+
+.site-description {
+	margin-left: 1em;
+}
+
+.site-branding {
+	grid-area: title;
+	margin: auto;
+}
+
+.site-title {
+	margin-top: 0.4em;
+	margin-bottom: 0.1em;
+	font-size: 2.3em;
+}
+
+#site-navigation {
+	grid-area: menu;
+}

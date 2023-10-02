@@ -1,2 +1,16 @@
-$size__site-main: 100%;
-$size__site-sidebar: 25%;
+@use "sass:map";
+
+$min_size__site-sidebar: 400px;
+$min_size__site_header: 10em;
+
+$size__page-1-column: map.get($grid-breakpoints, "md");
+$size__page-with-border: map.get($grid-breakpoints, "xl");
+$size__footer-on-right: (map.get($grid-breakpoints, "xl") + $min_size__site-sidebar);
+$ration__footer-on-right: "10/5";
+
+$size__menu-toggle: $size__page-with-border;
+$size__menu-fullwidth: $size__page-1-column;
+$height__menu-sticky: 4 * $min_size__site_header;
+
+$margin_width__large_screen: 5%;
+$margin_height__large_screen: 5em;

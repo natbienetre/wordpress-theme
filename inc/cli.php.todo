@@ -1,0 +1,38 @@
+<?php
+
+class NatbienetreCommand /* extends WP_CLI_Command */ {
+    /**
+     * Recompile the CSS from Sass
+     * 
+     * ## EXAMPLES
+     *
+     *     wp theme compile
+     */
+    function compile( $args, $assoc_args ) {        
+        list( $name ) = $args;
+        
+        require_once 'dynamic-compile.php';
+
+        $result = natbienetre_compile_css();
+        if ( is_wp_error( $result ) ) {
+            WP_CLI::Error( $result );
+
+            return;
+        }
+        
+        $error = natbienetre_write_css( $result );
+        if ( is_wp_error( $error ) ) {
+            WP_CLI::line( "Cascading Style Sheet" );
+            WP_CLI::log( $result->getCss() );
+            WP_CLI::error( $error );
+
+            return;
+        }
+
+        WP_CLI::success( 'Success' );
+    }
+}
+
+if ( defined( 'WP_CLI' ) && WP_CLI ) {
+    WP_CLI::add_command( 'theme', 'NatbienetreCommand' );
+}

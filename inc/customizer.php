@@ -56,6 +56,17 @@ function natbienetre_customize_partial_blogdescription() {
  * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
  */
 function natbienetre_customize_preview_js() {
-	wp_enqueue_script( 'natbienetre-customizer', get_template_directory_uri() . '/js/customizer.js', array( 'customize-preview' ), _S_VERSION, true );
+    $metadata = include path_join( __DIR__, 'build/customizer.asset.php' );
+
+	wp_enqueue_script(
+		'natbienetre-customizer',
+		get_template_directory_uri() . '/build/customizer.js',
+        $metadata['dependencies'],
+		$metadata['version'],
+        array(
+            'defer'     => true,
+            'in_footer' => true,
+        )
+	);
 }
 add_action( 'customize_preview_init', 'natbienetre_customize_preview_js' );

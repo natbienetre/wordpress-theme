@@ -1,0 +1,26 @@
+.site-footer {
+	padding: 2em 4em;
+
+	background-color: #252525;
+	color: #666666;
+
+	gap: 1em;
+
+	a {
+		text-decoration: none;
+	}
+/*
+	.widget-area {
+		float: left;
+		margin: 0 auto;
+		width: 33%;
+	}
+*/
+	.widget {
+		margin: 0 15%;
+	}
+
+	.widget-title {
+		color: white;
+	}
+}

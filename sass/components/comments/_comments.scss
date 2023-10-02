@@ -5,3 +5,20 @@
 .bypostauthor {
 	display: block;
 }
+
+.comments-area {
+	@include header-colors;
+
+	border-top: 0.1em solid $color__background-hr;
+	clear: both;
+	margin-top: 1.5em;
+	padding-top: 1.5em;
+
+	ul,
+	ol {
+		list-style: none;
+		margin: 0 0 1em;
+		padding-left: 1em;
+		border-left: 1px solid $color__background-hr;
+	}
+}

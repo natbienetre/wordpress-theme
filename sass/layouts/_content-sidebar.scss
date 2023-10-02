@@ -1,23 +1,111 @@
+@use "sass:map";
+
 .site {
 	display: grid;
-	grid-template-columns: auto ($size__site-sidebar);
+	grid-template-rows: max-content repeat(2, auto);
+	grid-template-columns: auto 30%;
 	grid-template-areas:
 		"header header"
 		"main sidebar"
 		"footer footer";
 }
 
+@media (tv) or (projection) {
+	html {
+		font-size: 3.3em;
+	}
+}
+
+// Horizontal wide screen
+@media (orientation: landscape) and (min-width: $size__footer-on-right) {
+	html {
+		.site#page {
+			grid-template-columns: $margin_width__large_screen auto 30% $margin_width__large_screen max-content;
+			grid-template-rows: max-content auto 2em;
+			grid-template-areas:
+				"header header header header footer"
+				"margin-left main sidebar margin-right footer"
+				"margin margin margin margin footer";
+			
+			#primary,
+			#secondary {
+				height: 100%;
+				width: 100%;
+				margin: auto;
+			}
+
+			.site-footer {
+				margin-top: 0;
+				
+				.widget-area {
+					margin: 1em auto;
+					width: 100%;
+				}
+			}
+		}
+	}
+}
+
+// Classic screen
+@media (min-width: $size__page-with-border) {
+	html {
+		font-size: 1em;
+
+		.site {	 
+			grid-template-columns: $margin_width__large_screen auto 30% $margin_width__large_screen;
+			grid-template-rows: max-content auto auto;
+			grid-template-areas:
+			"header header header header"
+			"margin-left main sidebar margin-right"
+			"footer footer footer footer";
+			
+			.site-footer {
+				margin-top: $margin_height__large_screen;
+			}
+		}
+	}
+}
+
+// Small screen
+@media (max-width: ($size__menu-fullwidth - 1)) {
+	html .site {
+		grid-template-areas:
+			"header"
+			"main"
+			"sidebar"
+			"footer";
+
+		#primary {
+			border-bottom: 1px solid $color__background-hr;
+		}
+		
+		#primary,
+		#secondary {
+			max-width: initial;
+		}
+	}
+}
+
 .site-header {
 	grid-area: header;
 }
 
-.site-main {
+#primary {
 	grid-area: main;
 	overflow: hidden; /* Resolves issue with <pre> elements forcing full width. */
+	//max-width: (map.get($grid-breakpoints, "xl") - $size__site-sidebar);
+	background-color: $color__background-page;
+	padding: 1em;
+	width: 100%;
 }
 
-.widget-area {
+#secondary {
 	grid-area: sidebar;
+	background-color: $color__background-page;
+	padding: 1em;
+
+	width: 100%;
+	height: 100%;
 }
 
 .site-footer {

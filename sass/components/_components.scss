@@ -1,10 +1,19 @@
 /* Navigation
 --------------------------------------------- */
 @import "navigation/navigation";
+@import "navigation/primary-menu";
+
+/* Header
+--------------------------------------------- */
+@import "header/header";
 
 /* Posts and pages
 --------------------------------------------- */
 @import "content/posts-and-pages";
+
+/* Widgets
+--------------------------------------------- */
+@import "content/widgets";
 
 /* Comments
 --------------------------------------------- */
@@ -25,3 +34,7 @@
 /* Galleries
 --------------------------------------------- */
 @import "media/galleries";
+
+/* Footer
+--------------------------------------------- */
+@import "footer/footer";

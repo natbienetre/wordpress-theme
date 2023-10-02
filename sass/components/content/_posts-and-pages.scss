@@ -2,11 +2,6 @@
 	display: block;
 }
 
-.post,
-.page {
-	margin: 0 0 1.5em;
-}
-
 .updated:not(.published) {
 	display: none;
 }
@@ -14,10 +9,32 @@
 .page-content,
 .entry-content,
 .entry-summary {
-	margin: 1.5em 0 0;
+	margin: 1em 0 1.5em 0;
 }
 
 .page-links {
 	clear: both;
 	margin: 0 0 1.5em;
+}
+
+.entry-header {
+	display: grid;
+	grid-template-areas: "title meta";
+	align-items: baseline;
+}
+
+.entry-title {
+	font-size: 2em;
+	grid-area: title;
+	margin-top: 0;
+}
+
+.entry-meta {
+	opacity: 0.7;
+	grid-area: meta;
+	text-align: right;
+}
+
+.edit-link {
+	float: right;
 }

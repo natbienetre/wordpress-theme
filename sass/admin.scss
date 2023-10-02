@@ -1,0 +1,7 @@
+// Import variables and mixins.
+@import "abstracts/abstracts";
+
+div.editor-styles-wrapper {
+    background-color: $color__background-page;
+	grid-template-rows: max-content auto auto auto auto;
+}

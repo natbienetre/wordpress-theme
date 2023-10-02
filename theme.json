@@ -1,0 +1,103 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 2,
+  "settings": {
+    "appearanceTools": true,
+    "color": {
+      "defaultPalette": false,
+      "background": false,
+      "palette": [
+        {
+          "name": "Black",
+          "slug": "black",
+          "color": "#000000"
+        }
+      ]
+    },
+    "custom": {
+      
+    },
+    "typography": {
+			"fontSizes": [
+				{
+					"slug": "small",
+					"size": "1rem",
+					"name": "Small"
+				},
+				{
+					"slug": "medium",
+					"size": "1.2rem",
+					"name": "medium"
+				},
+				{
+					"slug": "large",
+					"size": "1.5rem",
+					"name": "large"
+				}
+			]
+    },
+		"layout": {
+			"contentSize": "840px",
+			"wideSize": "1100px",
+      "allowEditing": true
+		},
+    "background": {
+      "backgroundImage": true
+    },
+    "position": {
+      "sticky": true
+    },
+		"spacing": {
+      "customSpacingSize": false,
+			"padding": true,
+			"margin": true,
+			"units": [ "em", "rem", "vh", "vw", "%" ],
+      "spacingSizes": [
+        {
+          "name": "Step 1",
+          "size": "0.25rem",
+          "slug": "10"
+        },
+        {
+          "name": "Step 2",
+          "size": "0.5rem",
+          "slug": "20"
+        },
+        {
+          "name": "Step 3",
+          "size": "0.75rem",
+          "slug": "30"
+        },
+        {
+          "name": "Step 4",
+          "size": "1rem",
+          "slug": "40"
+        },
+        {
+          "name": "Step 5",
+          "size": "1.25rem",
+          "slug": "50"
+        }
+      ]
+		}
+  },
+  "styles": {
+    "color": {
+      "background":"var(--wp--preset--color--white)",
+      "text":"var(--wp--preset--color--black)"
+    },
+    "typography":{
+      "fontSize":"1.5rem",
+      "fontFamily":"var(--wp--preset--font-family--system-fonts)",
+      "lineHeight":"1.5"
+    },
+    "spacing":{
+      "margin":{
+        "top":"0px",
+        "right":"0px",
+        "bottom":"0px",
+        "left":"0px"
+      }
+    }
+  }
+}

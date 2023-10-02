@@ -1,0 +1,73 @@
+<?php
+
+use ScssPhp\ScssPhp\Compiler;
+use ScssPhp\ScssPhp\Exception\SassException;
+
+class_alias( 'ScssPhp\ScssPhp\CompilationResult', 'CompiledSASS' );
+
+function natbienetre_compile_css(): CompiledSASS | WP_Error {
+    $THEME_DIR = dirname( __DIR__ );
+
+    $sass_dir = path_join( $THEME_DIR, 'sass' );
+    $sass_file = path_join( $sass_dir, 'style.scss' );
+
+    global $wp_filesystem;
+
+    if ( ! $wp_filesystem ) {
+        require_once ABSPATH . '/wp-admin/includes/file.php';
+
+        if ( ! WP_Filesystem() ) {
+            return new WP_Error( 'fs_unavailable', __( 'Could not access filesystem.', 'natbienetre' ) );
+        }
+    }
+
+    $sass_content = $wp_filesystem->get_contents( $sass_file );
+    if ( ! $sass_content ) {
+        return new WP_Error( 'nbe_read_sass_error', sprintf( __( 'Could not read %s.', 'natbienetre' ), $sass_file ) );
+    }
+
+    $compiler = new Compiler();
+    $compiler->addImportPath( $sass_dir );
+    $compiler->addImportPath( path_join( $THEME_DIR, "node_modules" ) );
+    try {
+        $result = $compiler->compileString( $sass_content, $sass_dir );
+    } catch ( SassException $e ) {
+        return new WP_Error( 'nbe_compile_error', sprintf( __( 'Failed to compile sass: %s', 'natbienetre' ), $e->getMessage() ) );
+    }
+
+    if ( empty( $result->getCss() ) ) {
+        return new WP_Error( 'nbe_empty_css', __( 'Unexcepted CSS.', 'natbienetre' ), $result );
+    }
+
+    return $result;
+}
+
+function natbienetre_write_css( CompiledSASS $compiled ): ?WP_Error {
+    global $wp_filesystem;
+
+    if ( ! $wp_filesystem ) {
+        require_once ABSPATH . '/wp-admin/includes/file.php';
+
+        if ( ! WP_Filesystem() ) {
+            return new WP_Error( 'fs_unavailable', __( 'Could not access filesystem.', 'natbienetre' ) );
+        }
+    }
+
+    $output = path_join( dirname( __DIR__ ), 'style.css' );
+    if ( ! $wp_filesystem->is_writable( $output ) ) {
+        return new WP_Error( 'nbe_writable_css_file', sprintf( __( '%s is not writable.', 'natbienetre' ), $output ) );
+    }
+    if ( ! $wp_filesystem->put_contents( $output, $compiled->getCss(), FS_CHMOD_FILE ) ) {
+        return new WP_Error( 'nbe_write_css_error', sprintf( __( 'Could not write to %s.', 'natbienetre' ), $output ) );
+    }
+
+    $output .= '.map';
+    if ( ! $wp_filesystem->is_writable( $output ) ) {
+        return new WP_Error( 'nbe_writable_sourcemap_file', sprintf( __( '%s is not writable.', 'natbienetre' ), $output ) );
+    }
+    if ( ! $wp_filesystem->put_contents( $output, $compiled->getSourceMap(), FS_CHMOD_FILE ) ) {
+        return new WP_Error( 'nbe_write_sourcemap_error', sprintf( __( 'Could not write to %s.', 'natbienetre' ), $output ) );
+    }
+
+    return null;
+}

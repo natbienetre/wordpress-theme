@@ -23,7 +23,7 @@
 			<div class="entry-meta">
 				<?php
 				natbienetre_posted_on();
-				natbienetre_posted_by();
+				// natbienetre_posted_by();
 				?>
 			</div><!-- .entry-meta -->
 		<?php endif; ?>

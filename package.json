@@ -1,14 +1,14 @@
 {
-  "name": "underscores",
+  "name": "wordpress-theme-natbienetre",
   "version": "1.0.0",
-  "description": "Hi. I'm a starter theme called _s, or underscores, if you like. I'm a theme meant for hacking so don't use me as a Parent Theme. Instead try turning me into the next, most awesome, WordPress theme out there. That's what I'm here for.",
-  "author": "Automattic Theme Team",
-  "license": "GPL-2.0-or-later",
+  "description": "A wordpress theme for natbienetre",
+  "author": "Pierre PÉRONNET",
+  "license": "MPL-2.0",
   "keywords": [
     "WordPress",
     "Theme"
   ],
-  "homepage": "https://github.com/Automattic/_s#readme",
+  "homepage": "https://github.com/natbienetre/wordpress-theme",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Automattic/_s.git"
@@ -17,10 +17,10 @@
     "url": "https://github.com/Automattic/_s/issues"
   },
   "devDependencies": {
-    "@wordpress/scripts": "^19.2.2",
-    "dir-archiver": "^1.1.1",
-    "node-sass": "^7.0.1",
-    "rtlcss": "^3.5.0"
+    "@wordpress/scripts": "^26.13.0",
+    "bootstrap": "^5.3.1",
+    "rtlcss": "^3.5.0",
+    "sass": "^1.64.1"
   },
   "rtlcssConfig": {
     "options": {
@@ -36,11 +36,19 @@
     "map": false
   },
   "scripts": {
-    "watch": "node-sass sass/ -o ./ --source-map true --output-style expanded --indent-type tab --indent-width 1 -w",
-    "compile:css": "node-sass sass/ -o ./ && stylelint '*.css' --fix || true && stylelint '*.css' --fix",
+    "watch:scss": "sass --style compressed --source-map --embed-sources --no-error-css --watch --load-path=node_modules sass/:./",
+    "watch:js": "wp-scripts start scripts/customizer",
+    "compile": "npm run compile:css && npm run compile:js && npm run compile:rtl",
+    "compile:css": "sass --style compressed --source-map --load-path=node_modules sass/:./",
+    "compile:js": "wp-scripts build scripts/customizer",
     "compile:rtl": "rtlcss style.css style-rtl.css",
     "lint:scss": "wp-scripts lint-style 'sass/**/*.scss'",
-    "lint:js": "wp-scripts lint-js 'js/*.js'",
-    "bundle": "dir-archiver --src . --dest ../_s.zip --exclude .DS_Store .stylelintrc.json .eslintrc .git .gitattributes .github .gitignore README.md composer.json composer.lock node_modules vendor package-lock.json package.json .travis.yml phpcs.xml.dist sass style.css.map yarn.lock"
+    "lint:js": "wp-scripts lint-js 'scripts/*'",
+    "bundle": "npm run compile && tar -cvzf natbienetre.tar.gz *.php *.css *.map build inc languages template-parts",
+    "packages-update": "wp-scripts packages-update",
+    "plugin-zip": "wp-scripts plugin-zip"
+  },
+  "dependencies": {
+    "jquery": "^3.7.1"
   }
 }

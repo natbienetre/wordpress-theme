@@ -9,3 +9,39 @@
 @mixin column-width($numberColumns: 3) {
 	width: map-get($columns, $numberColumns) - ( ( $columns__margin * ( $numberColumns - 1 ) ) / $numberColumns );
 }
+
+@mixin header-colors {
+    $count: length($color__headers);
+
+	@for $index from 1 through 6 {
+    	$color: nth($color__headers, ($index - 1) % $count + 1);
+        
+        h#{$index} {
+            a {
+                color: inherit;
+            }
+            
+            color: $color;
+        }
+    }
+}
+
+@mixin header-rainbow-colors {
+    $index: 0;
+    $count: length($color__headers);
+
+    @each $color in $color__headers {
+		&:nth-of-type(#{$count}n + #{$index % $count}) {
+			h1, h2, h3, h4, h5, h6 {
+				a {
+                    color: inherit;
+                }
+
+                color: $color;
+            }
+
+        }
+
+		$index: $index + 1;
+    }
+}

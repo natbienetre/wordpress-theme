@@ -1,0 +1,57 @@
+// Import variables and mixins.
+@import "abstracts/abstracts";
+
+$admin-bar__height: 32px;
+$admin-bar__static__window-width: 600px;
+$admin-bar__icone__window-width: 782px;
+$admin-bar__icon__height: 46px;
+
+@media (max-width: $admin-bar__static__window-width) {
+	html {
+		padding-top: $admin-bar__icon__height;
+	}
+	
+	.admin-bar #masthead {
+		top: 0;
+	}
+}
+
+@media (min-width: $admin-bar__static__window-width) and (max-width: $admin-bar--icone__window-width) {
+	html {
+		padding-top: $admin-bar__icon__height;
+	}
+
+	#primary-menu .primary-menu-toggle {
+		top: $admin-bar__icon__height;
+	}
+
+	.admin-bar #masthead {
+		top: $admin-bar__icon__height;
+	}
+}
+
+@media (min-width: ($size__menu-fullwidth)) and (max-width: ($size__menu-toggle - 1)) and (min-height: ($height__menu-sticky)) and (min-width: $admin-bar__static__window-width) and (max-width: $admin-bar--icone__window-width) {
+	.site .menu-primary-container {
+		margin-top: $admin-bar__icon__height;
+	}
+}
+
+@media (min-width: $admin-bar--icone__window-width) {
+	html {
+		padding-top: $admin-bar__height;
+	}
+
+	#primary-menu .primary-menu-toggle {
+		top: $admin-bar__height;
+	}
+	
+	.admin-bar #masthead {
+		top: $admin-bar__height;
+	}
+}
+
+@media (min-width: ($size__menu-fullwidth)) and (max-width: ($size__menu-toggle - 1)) and (min-height: ($height__menu-sticky)) and (min-width: $admin-bar--icone__window-width) {
+	.site .menu-primary-container {
+		margin-top: $admin-bar__height;
+	}
+}

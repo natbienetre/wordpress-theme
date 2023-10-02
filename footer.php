@@ -10,21 +10,18 @@
  */
 
 ?>
-
 	<footer id="colophon" class="site-footer">
-		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'natbienetre' ) ); ?>">
-				<?php
-				/* translators: %s: CMS name, i.e. WordPress. */
-				printf( esc_html__( 'Proudly powered by %s', 'natbienetre' ), 'WordPress' );
-				?>
-			</a>
-			<span class="sep"> | </span>
-				<?php
-				/* translators: 1: Theme name, 2: Theme author. */
-				printf( esc_html__( 'Theme: %1$s by %2$s.', 'natbienetre' ), 'natbienetre', '<a href="https://github.com/holyhope/">Pierre Peronnet</a>' );
-				?>
-		</div><!-- .site-info -->
+		<!-- wp:columns -->
+		<div class="wp-block-columns">
+			<?php for ( $i = 1; is_active_sidebar( "footer-{$i}" ); $i++ ) : ?>
+				<!-- wp:column -->
+				<div class="widget-area wp-block-column">
+					<?php dynamic_sidebar( "footer-{$i}" ); ?>
+				</div>
+				<!-- /wp:column -->
+			<?php endfor; ?>
+		</div>
+		<!-- /wp:columns -->
 	</footer><!-- #colophon -->
 </div><!-- #page -->
 
